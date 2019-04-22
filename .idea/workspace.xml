@@ -18,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="32" column="26" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="26" />
+            <state relative-caret-position="740">
+              <caret line="37" column="19" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="19" />
               <folding>
                 <element signature="e#0#111#0" expanded="true" />
               </folding>
@@ -30,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="160">
               <caret line="12" column="14" selection-end-line="66" selection-end-column="43" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -54,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsdl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
+            <state relative-caret-position="4080">
               <caret line="208" column="27" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="27" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -115,6 +115,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -126,7 +127,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="RunDashboard">
@@ -167,7 +167,7 @@
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.78348213" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49924356" weight="0.10801964" />
-      <window_info active="true" anchor="bottom" x="468" y="229" width="747" height="326" id="Terminal" order="7" sideWeight="0.5974702" side_tool="true" visible="true" weight="0.37755102" />
+      <window_info active="true" anchor="bottom" x="468" y="229" width="747" height="326" id="Terminal" order="7" sideWeight="0.5974702" side_tool="true" visible="true" weight="0.877551" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -193,19 +193,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sqlConnect.py" />
-    <entry file="file://$PROJECT_DIR$/MsSqlConnect.py">
+    <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="6" selection-end-column="22" />
+        <state relative-caret-position="740">
+          <caret line="37" column="19" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#111#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="160">
           <caret line="12" column="14" selection-end-line="66" selection-end-column="43" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
@@ -225,7 +225,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsdl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
+        <state relative-caret-position="4080">
           <caret line="208" column="27" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="27" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -233,15 +233,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
+    <entry file="file://$PROJECT_DIR$/MsSqlConnect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#111#0" expanded="true" />
-          </folding>
+        <state>
+          <caret selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
