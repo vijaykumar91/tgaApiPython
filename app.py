@@ -4,32 +4,87 @@ from flask import jsonify
 import urllib.request
 import requests
 import sys
+import time
+from zeep import Client
+import zeep
+from zeep.wsse.username import UsernameToken
+
 import json
 from fullcontact import FullContact
 
-fc = FullContact('wPKNrAJna1Yv8KOaXroqyaDiYUslX6LB')
-APIKey='wPKNrAJna1Yv8KOaXroqyaDiYUslX6LB'
+
+import urllib.request, json
+
+
+import pyodbc
+server = 'dbserveranasight.database.windows.net'
+database = 'warehouse'
+username = 'anasight@dbserveranasight'
+password = 'Root@12345'
+cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+cursor = cnxn.cursor()
+
+
+fc = FullContact('0DHVXQOcAgZzZbUPTeTQ83AakHlzIE8L')
+APIKey='0DHVXQOcAgZzZbUPTeTQ83AakHlzIE8L'
 app = Flask(__name__)
 
 #************ Get Contact details By Email *******
-@app.route("/conatct_details", methods=['POST','GET'])
-def conatct_details():
+@app.route("/person_enrich", methods=['POST','GET'])
+def person_enrich():
     if request.method == 'POST':
         jsonData = request.get_json(force=True)
         email1 =jsonData['email']
-
         if email1 == "" :
-
             return jsonify({'type': 'validation','message': 'Email is required','status': 0})
             sys.exit()
+
         if  email1 !="":
-                r = fc.person(email=email1)
-                return jsonify(r.json())
-                sys.exit()
-        else:
-            return jsonify(userRequired)
+            headers = {
+                'Authorization': 'Bearer '+APIKey,
+            }
+            params = {
+                'email': email1,
+            }
+            payload = {
+
+                'email': email1,
+            }
+            url = 'https://api.fullcontact.com/v3/person.enrich'
+            response = requests.post(url, headers=headers, params=params,
+                                     data=json.dumps(payload))
+            response.raise_for_status()
+            res=response.json()
+
+            generate_insert_query('fullcontact_person_enrich', res, cursor)
+            personalData={
+                'fullName':res['fullName'],
+                'ageRange': res['ageRange'],
+                'gender': res['gender'],
+                'location': res['location'],
+                'title': res['title'],
+                'organization': res['organization'],
+                'twitter': res['twitter'],
+                'facebook': res['facebook'],
+                'avatar': res['avatar'],
+                'website': res['website'],
+                'updated': res['updated'],
+                'bio': res['bio'],
+                'linkedin': res['linkedin'],
+
+            }
+            dataAddOnsArr=res['dataAddOns']
+            detailsArr = res['details']
+            return jsonify({'detailsArr':detailsArr,'dataAddOnsArr':dataAddOnsArr,'personalData':personalData})
             sys.exit()
-    return jsonify(status)
+
+
+
+        else:
+            return jsonify({'message':'validation Error','status':0})
+            sys.exit()
+    return jsonify({'error': 'Method are not allowed', 'status': 0})
+    sys.exit()
 #************ Get Contact details By Email End*******
 
 
@@ -43,6 +98,7 @@ def phone_details():
             return jsonify({'type': 'validation','message': 'phone is required','status': 0})
             sys.exit()
         if  phone !="":
+
             url = 'https://api.fullcontact.com/v2/person.json?phone='+str(phone)
             header = {"X-FullContact-APIKey": APIKey}
             r = requests.post(url, headers=header)
@@ -129,7 +185,33 @@ def company_name():
     return jsonify({'type': 'Request error','message': 'Method not allowed','status': 401})
 #************ Get Contact details By Email End*******
 
+def generate_insert_query(table, dictionary, cursor):
+
+    input_dict = zeep.helpers.serialize_object(dictionary)
+    output_dict = json.loads(json.dumps(input_dict))
+
+    # Get all "keys" inside "values" key of dictionary (column names)
+    columns = ', '.join([key for key, value in output_dict.items()])
+    values = ', '.join(["'" + json.dumps(value)  if isinstance(value, list) else value.replace("'", "") + "'" for key, value in output_dict.items()])
+
+
+    queryBuilder = "INSERT INTO " + table + " (" + columns + ") VALUES (" + values + ")"
+
+
+    retry_flag = True
+    retry_count = 0
+    while retry_flag and retry_count < 5:
+        try:
+            result = cursor.execute(queryBuilder)
+            cnxn.commit()
+            retry_flag = False
+        except:
+            print
+            "Retry after 1 sec"
+            retry_count = retry_count + 1
+            time.sleep(1)
+
 if __name__=="__main__":
 
-    app.run(host='10.0.0.171',port=8083)
+    app.run(host='10.1.1.210', port='8008', debug=True)
 

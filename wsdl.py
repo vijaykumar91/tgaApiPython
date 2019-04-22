@@ -1,5 +1,6 @@
 from flask import Flask,request,jsonify
 import sys
+import time
 # import MsSqlConnect
 import json
 app = Flask(__name__)
@@ -157,7 +158,7 @@ def GetValidationCodes():
     if request.method == 'GET':
         addressStates=[]
         validationCodes=client.service.GetValidationCodes()
-      
+
         for query in validationCodes:
             generate_insert_query('tga_validation_codes', query, cursor)
 
@@ -171,6 +172,8 @@ def Search():
     if request.method == 'GET':
         addressStates=[]
         search=client.service.Search()
+        print(search)
+        sys.exit()
         return jsonify({'type': 'search', 'responseData': str(search), 'status': 1})
     else:
         return jsonify({'type': 'request','message': 'Sorry! Method Not Allowed','status': '0'})
@@ -182,6 +185,7 @@ def TransferDataManager():
     if request.method == 'GET':
         addressStates=[]
         transferDataManager=client.service.TransferDataManager()
+
         return jsonify({'type': 'search', 'responseData': str(transferDataManager), 'status': 1})
     else:
         return jsonify({'type': 'request','message': 'Sorry! Method Not Allowed','status': '0'})
@@ -193,11 +197,24 @@ def generate_insert_query(table, dictionary, cursor):
 
     # Get all "keys" inside "values" key of dictionary (column names)
     columns = ', '.join([key for key, value in output_dict.items()])
-    values = ', '.join(["'" + value + "'" for key, value in output_dict.items()])
+    values = ', '.join(["'" + value.replace("'", "") + "'" for key, value in output_dict.items()])
+
 
     queryBuilder = "INSERT INTO " + table + " (" + columns + ") VALUES (" + values + ")"
-    result = cursor.execute(queryBuilder)
-    cnxn.commit()
+
+    retry_flag = True
+    retry_count = 0
+    while retry_flag and retry_count < 5:
+        try:
+            result = cursor.execute(queryBuilder)
+            cnxn.commit()
+            retry_flag = False
+        except:
+            print
+            "Retry after 1 sec"
+            retry_count = retry_count + 1
+            time.sleep(1)
+
 
 
 app.run(host='10.1.1.210',port='8000',debug=True)
