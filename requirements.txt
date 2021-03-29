@@ -199,7 +199,7 @@ pycurl==7.43.0.2
 PyDispatcher==2.0.5
 pyflakes==0.7.3
 PyGithub==1.35
-Pygments==1.6
+Pygments==2.7.4
 PyHamcrest==1.9.0
 pyhocon==0.3.48
 PyInstaller==3.3.1
