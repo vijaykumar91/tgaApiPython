@@ -75,7 +75,7 @@ exception==0.1.0
 fasteners==0.14.1
 flake8==2.1.0
 Flask==1.0.2
-Flask-Cors==3.0.6
+Flask-Cors==3.0.9
 Flask-JWT==0.3.2
 Flask-OAuthlib==0.9.5
 Flask-Session==0.3.1
