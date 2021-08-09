@@ -226,7 +226,7 @@ python-jose==3.0.0
 python-mimeparse==1.6.0
 pytz==2017.3
 PyWaves==0.8.4
-pywin32==224
+pywin32==301
 pywinpty==0.5.5
 PyYAML==3.13
 pyzmq==17.1.2
