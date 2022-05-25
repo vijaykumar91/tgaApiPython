@@ -203,7 +203,7 @@ Pygments==1.6
 PyHamcrest==1.9.0
 pyhocon==0.3.48
 PyInstaller==3.3.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyLDAvis==2.1.2
 pylint==1.5.4
 PyMI==1.0.4
