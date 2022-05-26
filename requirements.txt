@@ -280,7 +280,7 @@ traitlets==4.3.2
 tweepy==3.6.0
 twilio==6.16.3
 Twisted==18.9.0
-ujson==1.35
+ujson==5.2.0
 uritemplate==3.0.0
 urllib3==1.24.1
 uszipcode==0.1.3
