@@ -245,7 +245,7 @@ rsa==3.4.2
 s3transfer==0.1.13
 scikit-learn==0.20.2
 scipy==1.1.0
-Scrapy==1.6.0
+Scrapy==2.6.1
 Scrapy-UserAgents==0.0.1
 seaborn==0.8.1
 selenium==3.11.0
