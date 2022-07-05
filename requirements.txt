@@ -192,7 +192,7 @@ py==1.7.0
 pyasn1==0.4.3
 pyasn1-modules==0.2.1
 pyblake2==1.1.0
-pycares==2.3.0
+pycares==4.2.0
 pycodestyle==2.4.0
 pycparser==2.18
 pycurl==7.43.0.2
