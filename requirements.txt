@@ -58,7 +58,7 @@ dill==0.2.8.2
 dj-database-url==0.4.2
 dj-email-url==0.1.0
 Django==1.9
-django-celery-results==1.0.1
+django-celery-results==2.4.0
 django-filter==1.1.0
 django-reset-migrations==0.3.1
 django-tastypie==0.14.2
